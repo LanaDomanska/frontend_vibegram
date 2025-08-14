@@ -1,0 +1,31 @@
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 240px; 
+  right: 0; 
+  background-color: #fff;
+  color: #737373;
+  padding: 1rem 0;
+
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.link {
+  color: #737373;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.link:hover {
+  color: #000;
+}
