@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import api from "../../services/api/api";
+import api from "../../api/axios";
 import { useNavigate } from "react-router-dom";
 import { TextField, Button, Box, Typography } from "@mui/material";
 
