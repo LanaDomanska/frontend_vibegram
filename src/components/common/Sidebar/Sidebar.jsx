@@ -8,7 +8,7 @@ import {
   NotificationsIcon,
   CreateIcon,
   ProfileIcon,
-} from "../../../assets/icons/Icons";
+} from "../../../assets/icons/icons";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../../contexts/AuthContext";
