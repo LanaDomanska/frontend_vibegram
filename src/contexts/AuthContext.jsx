@@ -1,4 +1,3 @@
-// src/contexts/AuthContext.jsx  (или твой путь)
 import { createContext, useContext, useEffect, useState } from "react";
 import api from "../api/axios";
 
@@ -7,14 +6,14 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [authChecked, setAuthChecked] = useState(false); // ← ДОБАВИЛИ
+  const [authChecked, setAuthChecked] = useState(false); 
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
       setUser(null);
       setIsAuthenticated(false);
-      setAuthChecked(true);                     // ← ВАЖНО
+      setAuthChecked(true);                     
       return;
     }
     (async () => {
@@ -26,7 +25,7 @@ export const AuthProvider = ({ children }) => {
         setUser(null);
         setIsAuthenticated(false);
       } finally {
-        setAuthChecked(true);                   // ← ВАЖНО
+        setAuthChecked(true);                   
       }
     })();
   }, []);
@@ -46,9 +45,11 @@ export const AuthProvider = ({ children }) => {
     setIsAuthenticated(false);
     setAuthChecked(true);
   };
-
+const updateUser = (callback) => {
+  setUser(prev => callback(prev));
+};
   return (
-    <AuthContext.Provider value={{ user, isAuthenticated, authChecked, login, logout }}>
+    <AuthContext.Provider value={{ user, isAuthenticated, authChecked, login, logout, updateUser}}>
       {children}
     </AuthContext.Provider>
   );

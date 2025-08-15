@@ -11,7 +11,7 @@ import api from "../../../api/axios";
 import styles from "./EditProfile.module.css";
 import Loader from "../../../components/common/Loader/Loader";
 import { useNavigate } from "react-router-dom";
-
+import { API_URL } from "@/config"; 
 
 const MAX_ABOUT_LENGTH = 150;
 const defaultAvatar = "/images/default-avatar.png";
@@ -42,11 +42,11 @@ useEffect(() => {
     setUsername(user.username || "");
     setWebsite(user.website || "");
     setAbout(user.bio || "");
-    setPreview(
-      user.avatar && user.avatar.trim() !== "" 
-        ? `"https://backend-vibegram-30ac.onrender.com"${user.avatar}`
-        : defaultAvatar 
-    );
+setPreview(
+  user.avatar && user.avatar.trim() !== ""
+    ? `${API_URL}${user.avatar.startsWith("/public") ? user.avatar.replace("/public", "") : user.avatar}`
+    : defaultAvatar
+);
   }
 }, [user]);
 
@@ -95,7 +95,7 @@ useEffect(() => {
         bio: res.data.bio,
       }));
 
-      setMessage("Изменения сохранены ✔");
+      setMessage("Changes saved ✔");
 
       setTimeout(() => {
         navigate(`/profile/${username}`);
