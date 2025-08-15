@@ -8,7 +8,7 @@ import {
   Link as MuiLink
 } from "@mui/material";
 import { useSearchParams, useNavigate, Link as RouterLink } from "react-router-dom";
-import api from "../../../services/api";
+import api from "../../../components/common/sevices/api.js";
 import styles from "./ResetPassword.module.css";
 
 const ResetPasswordConfirm = () => {

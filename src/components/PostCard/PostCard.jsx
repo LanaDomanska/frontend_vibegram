@@ -13,18 +13,15 @@ import DefaultAvatar from "../../assets/images/VibeGramLogo.png";
 const PostCard = ({ post }) => {
   const postId = post._id;
 
-  // единый хук лайка
   const { liked, likes, toggleLike } = useLike({
     postId,
     initialLiked: post.isLiked,
     initialLikes: post.likes,
   });
 
-  // если не нужно открывать модал по клику на "коммент", тоже останавливаем всплытие
   const handleCommentClick = (e) => {
     e?.stopPropagation?.();
     e?.preventDefault?.();
-    // здесь твоя логика для комментариев (если понадобится)
   };
 
   const avatarSrc = post.author.avatar
@@ -44,7 +41,6 @@ const PostCard = ({ post }) => {
    </Link>
       </div>
 
-      {/* по клику на изображение модалка всплывает в родителе — ничего не стопаем */}
       <img
         src={`${API_URL}${post.imageUrl}`}
         alt="post"
@@ -56,7 +52,7 @@ const PostCard = ({ post }) => {
           src={liked ? LikeFilledIcon : LikeIcon}
           alt="like"
           className={styles.icon + (liked ? ` ${styles.liked}` : "")}
-          onClick={toggleLike}                // <- используем хук
+          onClick={toggleLike}                
           role="button"
           tabIndex={0}
           onKeyDown={(e) =>

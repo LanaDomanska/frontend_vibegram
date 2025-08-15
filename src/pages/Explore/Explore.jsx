@@ -2,15 +2,16 @@ import { useEffect, useMemo, useState, useCallback } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import PostModal from "@/components/modals/PostModal.jsx"; 
 import s from "./Explore.module.css";
+import { API_URL } from "@/config";
 
-const API_ORIGIN = import.meta.env.VITE_API_ORIGIN ?? "http://localhost:3000";
+// const API_ORIGIN = import.meta.env.VITE_API_URL ?? "https://backend-vibegram-30ac.onrender.com";
 
 function resolveImg(raw = "") {
   if (!raw) return "";
   if (raw.startsWith("http")) return raw;
-  if (raw.startsWith("/public/")) return API_ORIGIN + raw.replace("/public", "");
-  if (raw.startsWith("/posts/"))  return API_ORIGIN + raw;
-  return `${API_ORIGIN}/posts/${raw}`;
+  if (raw.startsWith("/public/")) return API_URL + raw.replace("/public", "");
+  if (raw.startsWith("/posts/"))  return API_URL + raw;
+  return `${API_URL}/posts/${raw}`;
 }
 
 export default function Explore() {
@@ -26,7 +27,7 @@ export default function Explore() {
   useEffect(() => {
     (async () => {
       try {
-        const res = await fetch(`${API_ORIGIN}/api/explore?limit=60`, {
+        const res = await fetch(`${API_URL}/api/explore?limit=60`, {
           credentials: "include",
           cache: "no-store",
         });
@@ -40,11 +41,11 @@ export default function Explore() {
     })();
   }, []);
 
-  const openPost = useCallback((id) => {
-    const p = new URLSearchParams(location.search);
-    p.set("post", id);
-    navigate({ pathname: location.pathname, search: p.toString() }, { replace: false });
-  }, [location.pathname, location.search, navigate]);
+  // const openPost = useCallback((id) => {
+  //   const p = new URLSearchParams(location.search);
+  //   p.set("post", id);
+  //   navigate({ pathname: location.pathname, search: p.toString() }, { replace: false });
+  // }, [location.pathname, location.search, navigate]);
 
   const closePost = useCallback(() => {
     const p = new URLSearchParams(location.search);

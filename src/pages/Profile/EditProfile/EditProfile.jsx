@@ -44,7 +44,7 @@ useEffect(() => {
     setAbout(user.bio || "");
     setPreview(
       user.avatar && user.avatar.trim() !== "" 
-        ? `http://localhost:3000${user.avatar}`
+        ? `"https://backend-vibegram-30ac.onrender.com"${user.avatar}`
         : defaultAvatar 
     );
   }

@@ -1,9 +1,7 @@
 import { createContext, useContext, useState } from "react";
 
-// 1. Создаем сам контекст
 const NotificationContext = createContext();
 
-// 2. Провайдер — то, что будет оборачивать App
 export const NotificationProvider = ({ children }) => {
   const [notification, setNotification] = useState(null);
 
@@ -19,5 +17,4 @@ export const NotificationProvider = ({ children }) => {
   );
 };
 
-// 3. Хук для удобного доступа к контексту
 export const useNotification = () => useContext(NotificationContext);
